@@ -6,19 +6,20 @@
 
     <ImageView
         android:id="@+id/img_category"
-        android:layout_width="@dimen/_80sdp"
-        android:layout_height="@dimen/_80sdp"
+        android:layout_width="@dimen/_65sdp"
+        android:layout_height="@dimen/_65sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:src="@color/accent"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
         android:id="@+id/tv_category_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Category Name"
+        android:text="category_name"
         android:textColor="@color/black"
         android:textSize="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_3sdp"

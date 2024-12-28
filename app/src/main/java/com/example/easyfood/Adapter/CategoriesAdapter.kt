@@ -14,11 +14,13 @@ class CategoriesAdapter():RecyclerView.Adapter<CategoriesAdapter.CategoryViewHol
     inner class CategoryViewHolder(val binding: CategoryItemBinding):RecyclerView.ViewHolder(binding.root)
 
     private var categoriesList = ArrayList<Category>()
+    var onItemClick : ((Category)->Unit) ?= null
+    fun setCategoriesList(categoriesList: List<Category>){
+        this.categoriesList = categoriesList as ArrayList<Category>
+        notifyDataSetChanged()
+    }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): CategoriesAdapter.CategoryViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesAdapter.CategoryViewHolder {
         return CategoryViewHolder(
             CategoryItemBinding.inflate(LayoutInflater.from(parent.context))
         )
@@ -28,7 +30,10 @@ class CategoriesAdapter():RecyclerView.Adapter<CategoriesAdapter.CategoryViewHol
         Glide.with(holder.itemView)
             .load(categoriesList[position].strCategoryThumb)
             .into(holder.binding.imgCategory)
-        holder.binding.tvCategoryName.text = categoriesList[position].idCategory
+        holder.binding.tvCategoryName.text = categoriesList[position].strCategory
+        holder.itemView.setOnClickListener {
+            onItemClick!!.invoke(categoriesList[position])
+        }
     }
 
     override fun getItemCount(): Int {
